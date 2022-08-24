@@ -1,7 +1,7 @@
 package com.walle.pojo;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * @author 123
@@ -16,13 +16,19 @@ public class Emp implements Serializable {
     private Date hiredate;
     private Double sal;
 
-    public Emp(Integer empno, String ename, String job, Integer mgr, Date hiredate, Double sal) {
+    private Double comm;
+
+    private Integer deptno;
+
+    public Emp(Integer empno, String ename, String job, Integer mgr, Date hiredate, Double sal, Double comm, Integer deptno) {
         this.empno = empno;
         this.ename = ename;
         this.job = job;
         this.mgr = mgr;
         this.hiredate = hiredate;
         this.sal = sal;
+        this.comm = comm;
+        this.deptno = deptno;
     }
 
     public Integer getEmpno() {
@@ -73,6 +79,22 @@ public class Emp implements Serializable {
         this.sal = sal;
     }
 
+    public Double getComm() {
+        return comm;
+    }
+
+    public void setComm(Double comm) {
+        this.comm = comm;
+    }
+
+    public Integer getDeptno() {
+        return deptno;
+    }
+
+    public void setDeptno(Integer deptno) {
+        this.deptno = deptno;
+    }
+
     @Override
     public String toString() {
         return "Emp{" +
@@ -82,6 +104,8 @@ public class Emp implements Serializable {
                 ", mgr=" + mgr +
                 ", hiredate=" + hiredate +
                 ", sal=" + sal +
+                ", comm=" + comm +
+                ", deptno=" + deptno +
                 '}';
     }
 }
