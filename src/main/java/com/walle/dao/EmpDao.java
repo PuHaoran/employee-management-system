@@ -30,4 +30,6 @@ public interface EmpDao {
      */
     int updateEmp(Emp emp);
 
+    int addEmp(Emp emp);
+
 }

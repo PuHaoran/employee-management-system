@@ -68,6 +68,34 @@ public class EmpManageSystem {
         empDao.updateEmp(emp);
     }
 
+    public static void case5() {
+        System.out.println("请输入员工编号：");
+        Integer empno = sc.nextInt();
+        System.out.println("请输入员工姓名：");
+        String ename = sc.next();
+        System.out.println("请输入员工职位：");
+        String job = sc.next();
+        System.out.println("请输入员工上级：");
+        Integer mgr = sc.nextInt();
+        System.out.println("请输入员工入职日期：");
+        Date hiredate = null;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            hiredate = simpleDateFormat.parse(sc.next());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        System.out.println("请输入员工工资：");
+        Double sal = sc.nextDouble();
+        System.out.println("请输入员工补助：");
+        Double comm = sc.nextDouble();
+        System.out.println("请输入员工部门号：");
+        Integer deptno = sc.nextInt();
+
+        Emp emp = new Emp(empno, ename, job, mgr, hiredate, sal, comm, deptno);
+        empDao.addEmp(emp);
+    }
+
     public static void main(String[] args) {
         while (true) {
             showMenu();
@@ -86,7 +114,9 @@ public class EmpManageSystem {
                 case 4:
                     case4();
                     break;
-                case 5: break;
+                case 5:
+                    case5();
+                    break;
                 case 6: break;
                 case 7: break;
                 default:

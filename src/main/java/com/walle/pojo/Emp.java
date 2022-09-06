@@ -20,6 +20,10 @@ public class Emp implements Serializable {
 
     private Integer deptno;
 
+    public Emp() {
+
+    }
+
     public Emp(Integer empno, String ename, String job, Integer mgr, Date hiredate, Double sal, Double comm, Integer deptno) {
         this.empno = empno;
         this.ename = ename;
