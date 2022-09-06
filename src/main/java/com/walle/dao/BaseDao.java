@@ -12,10 +12,10 @@ import java.util.List;
  * @create 2022/9/5 23:08
  */
 public abstract class BaseDao {
-    private static String driver = "com.mysql.cj.jdbc.Driver";
-    private static String url = "jdbc:mysql://127.0.0.1:3306/mydb?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true";
-    private static String user = "root";
-    private static String password = "123123";
+//    private static String driver = "com.mysql.cj.jdbc.Driver";
+//    private static String url = "jdbc:mysql://127.0.0.1:3306/mydb?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true";
+//    private static String user = "root";
+//    private static String password = "123123";
 
     public List baseQuery(Class clazz, String sql, Object ... args) {
         // 获取链接
@@ -26,8 +26,9 @@ public abstract class BaseDao {
         ResultSet resultSet = null;
         List<Object> list = null;
         try {
-            Class.forName(driver);
-            conn = DriverManager.getConnection(url, user, password);
+            conn = MyConnectionPool.getConnection();
+            //Class.forName(driver);
+            //conn = DriverManager.getConnection(url, user, password);
             // conn.prepareStatement(sql)可以获得一个预编译语句对象PrepareStatement
             preparedStatement = conn.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
@@ -86,8 +87,9 @@ public abstract class BaseDao {
         PreparedStatement preparedStatement = null;
         int rows = 0;
         try {
-            Class.forName(driver);
-            conn = DriverManager.getConnection(url, user, password);
+            conn = MyConnectionPool.getConnection();
+//            Class.forName(driver);
+//            conn = DriverManager.getConnection(url, user, password);
             // conn.prepareStatement(sql)可以获得一个预编译语句对象PrepareStatement
             preparedStatement = conn.prepareStatement(sql);
             for (int i = 0; i < args.length; i++) {
