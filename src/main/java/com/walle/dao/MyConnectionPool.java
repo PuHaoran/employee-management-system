@@ -1,5 +1,7 @@
 package com.walle.dao;
 
+import com.walle.util.PropertiesUtil;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -12,15 +14,24 @@ import java.util.LinkedList;
  */
 public class MyConnectionPool {
 
-    private static String driver = "com.mysql.cj.jdbc.Driver";
-    private static String url = "jdbc:mysql://127.0.0.1:3306/mydb?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true";
-    private static String user = "root";
-    private static String password = "123123";
+    private static String driver;
+    private static String url;
+    private static String user;
+    private static String password;
+    private static Integer initSize;
+    private static Integer maxSize;
     private static LinkedList<Connection> pool;
-    private static Integer initSize = 2;
-    private static Integer maxSize = 3;
 
     static {
+        // 初始化参数
+        PropertiesUtil propertiesUtil = new PropertiesUtil("/jdbc.properties");
+        driver = propertiesUtil.getProperties("driver");
+        url = propertiesUtil.getProperties("url");
+        user = propertiesUtil.getProperties("user");
+        password = propertiesUtil.getProperties("password");
+        initSize = Integer.parseInt(propertiesUtil.getProperties("initSize"));
+        maxSize = Integer.parseInt(propertiesUtil.getProperties("maxSize"));
+
         // 加载驱动
         try {
             Class.forName(driver);
@@ -101,6 +112,4 @@ public class MyConnectionPool {
             }
         }
     }
-
-
 }
